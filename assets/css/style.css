@@ -1,0 +1,37 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+*{
+    font-family: 'Bree Serif', serif;
+}
+.numbers1 button {
+    margin: 5px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.card-body input{
+    border: 2px solid   rgb(0, 139, 139);
+   
+}
+.numbers1 .btn {
+    flex: 1;
+    margin: 5px;
+    padding: 10px 40px;
+    background-color: #008B8B;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.submit .btn{
+    color: #fff;
+    width: 59%;
+    background-color: #008B8B;
+}
+.card-body .btn-block{
+    width: 100%;
+    color: #fff;
+    background-color: #008B8B;
+}
