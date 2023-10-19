@@ -11,7 +11,7 @@ const leaderboardTable = document.querySelector(".table tbody");
 let Score = 0;
 let userName = null;
 let leaderboardData = [];
-let userInputField; // Declare userInputField
+let userInputField; 
 
 function generateMathQuestion() {
     const num1 = Math.floor(Math.random() * 10);
