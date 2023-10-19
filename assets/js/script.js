@@ -85,21 +85,13 @@ refreshButton.addEventListener("click", function () {
 });
 
 function updateLeaderboard() {
-    leaderboardTable.innerHTML = "";
-
-    leaderboardData.forEach((data, index) => {
-        const newRow = document.createElement("tr");
-        const rankCell = document.createElement("td");
-        rankCell.textContent = index + 1;
-        const nameCell = document.createElement("td");
-        nameCell.textContent = data.name;
-        const scoreCell = document.createElement("td");
-        scoreCell.textContent = data.score;
-        newRow.appendChild(rankCell);
-        newRow.appendChild(nameCell);
-        newRow.appendChild(scoreCell);
-        leaderboardTable.appendChild(newRow);
-    });
+    leaderboardTable.innerHTML = leaderboardData.map((data, index) => `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${data.name}</td>
+            <td>${data.score}</td>
+        </tr>
+    `).join('');
 }
 
 generateMathQuestion();
