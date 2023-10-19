@@ -48,7 +48,7 @@ submitButton.addEventListener("click", function () {
     
         userInputField = document.createElement("div");
         userInputField.innerHTML = `
-            <div class="col-6">
+            <div class="col-6 mt-4 ms-5">
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control" id="user-name" placeholder="Enter your name">
