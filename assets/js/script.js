@@ -11,7 +11,7 @@ const leaderboardTable = document.querySelector(".table tbody");
 let Score = 0;
 let userName = null;
 let leaderboardData = [];
-let userInputField; 
+let userInputField; // Declare userInputField
 
 function generateMathQuestion() {
     const num1 = Math.floor(Math.random() * 10);
@@ -43,47 +43,64 @@ submitButton.addEventListener("click", function () {
         userAnswerElement.value = "";
 
      
-        userInputField = document.createElement("input");
-        userInputField.setAttribute("type", "text");
-        userInputField.setAttribute("id", "user-name-input");
-        userInputField.setAttribute("placeholder", "Enter your name");
-        userInputField.classList.add("form-control", "mt-5");
+        removeUserInputField();
+
+    
+        userInputField = document.createElement("div");
+        userInputField.innerHTML = `
+            <div class="col-6">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="user-name" placeholder="Enter your name">
+                    </div>
+                </form>
+            </div>`;
         document.body.appendChild(userInputField);
     }
 });
 
+function removeUserInputField() {
+    if (userInputField) {
+        userInputField.remove();
+    }
+}
+
 refreshButton.addEventListener("click", function () {
     if (userInputField) {
-        userName = userInputField.value;
+        userName = document.getElementById("user-name").value;
     }
     if (userName) {
         leaderboardData.push({ name: userName, score: Score });
-        leaderboardData.sort((a, b) => b.score - a.score);
-        leaderboardTable.innerHTML = "";
-
-        leaderboardData.forEach((data, index) => {
-            const newRow = document.createElement("tr");
-            const rankCell = document.createElement("td");
-            rankCell.textContent = index + 1;
-            const nameCell = document.createElement("td");
-            nameCell.textContent = data.name;
-            const scoreCell = document.createElement("td");
-            scoreCell.textContent = data.score;
-            newRow.appendChild(rankCell);
-            newRow.appendChild(nameCell);
-            newRow.appendChild(scoreCell);
-            leaderboardTable.appendChild(newRow);
-        });
-
-        Score = 0;
-        scoreElement.textContent = Score;
-        userAnswerElement.value = "";
-        userName = null;
-        if (userInputField) {
-            userInputField.remove();
-        }
     }
+    leaderboardData.sort((a, b) => b.score - a.score);
+    updateLeaderboard();
+
+    Score = 0;
+    scoreElement.textContent = Score;
+    userAnswerElement.value = "";
+    userName = null;
+
+   
+    removeUserInputField();
 });
+
+function updateLeaderboard() {
+    leaderboardTable.innerHTML = "";
+
+    leaderboardData.forEach((data, index) => {
+        const newRow = document.createElement("tr");
+        const rankCell = document.createElement("td");
+        rankCell.textContent = index + 1;
+        const nameCell = document.createElement("td");
+        nameCell.textContent = data.name;
+        const scoreCell = document.createElement("td");
+        scoreCell.textContent = data.score;
+        newRow.appendChild(rankCell);
+        newRow.appendChild(nameCell);
+        newRow.appendChild(scoreCell);
+        leaderboardTable.appendChild(newRow);
+    });
+}
 
 generateMathQuestion();
 
